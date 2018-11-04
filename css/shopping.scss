@@ -143,9 +143,26 @@ header {
   // align-items: center;
   .serch_menu {
     background: #fff;
+    form {
+      margin-bottom: 10px;
+
+    }
+    input::placeholder {
+      color: #b5b5b5;
+    }
+    input {
+      font-size: x-small;
+      font-style: italic;
+
+    }
+    #placeholder {
+      color: red;
+    }
+
     .itemserch {
       float: left;
       margin: 10px 0 0 10px;
+      padding: 10px 0 20px 5px;
     }
 
     #serchwords {
@@ -155,10 +172,10 @@ header {
       background-image: url("../images/top/search_icon.png");
       background-position: 95% center;
       background-repeat: no-repeat;
-      z-index: 100;
-      padding: 0;
+      margin-bottom: 20px;
       width: 90%;
       border-radius: 0;
+
     } //後からアイコンクリックで飛ぶようにしたいときに活用
     #serch_icon {
       //width: 30px;
@@ -174,7 +191,7 @@ header {
   #pagelink {
     .pagelink_mae {
       padding: 10px 8px;
-      margin: 2px 0;
+      margin-bottom: 10px;
       background: $sidebarcolor;
       background-image: url("../images/top/next_icon.png");
       background-position: 95% center;
@@ -207,7 +224,6 @@ header {
   #category {
     .category_mae {
       padding: 10px 8px;
-      margin: 2px 0;
       background: $sidebarcolor;
       background-image: url("../images/top/down_icon.png");
       background-position: 95% center;
@@ -216,7 +232,7 @@ header {
     .category_tenkai {
       //display: none;展開するときに使う
       .category_li {
-        margin: 0;
+        margin-bottom: 10px;
       }
       ul {
         list-style: none;
@@ -245,7 +261,6 @@ header {
     #about {
       .about_cate {
         padding: 10px 8px;
-        margin: 2px 0;
         background: $sidebarcolor;
       }
       .about_us {
@@ -256,19 +271,21 @@ header {
         align-items: flex-start;
       }
       .about_img {
-        margin: 10px;
+        margin: 10px 5px 10px 5px;
         max-width: 100%;
       }
       .about_btn {
         p {
           margin: 5px;
         }
+        .more_btn {
+          margin: 15px;
+        }
       }
     }
     #shop {
       .shop_cate {
         padding: 10px 8px;
-        margin: 2px 0;
         background: $sidebarcolor;
       }
       .information {
@@ -279,11 +296,14 @@ header {
         align-items: flex-start;
 
         .shopinfo_img {
-          margin: 10px;
+          margin: 10px 5px 10px 5px;
         }
         .shopinfo_btn {
           p {
             margin: 5px;
+          }
+          .more_btn {
+            margin: 15px;
           }
         }
       }
@@ -294,64 +314,75 @@ header {
 
 //SideMenu(for sp)
 @media (max-width: 550px) {
-  .itemserch {
-    display: none;
+  #side_bar {
+    .itemserch {
+      display: none;
+    }
+    #serchwords {
+      margin: 15px 0;
+    }
+    .serch_menu form {
+      margin: 10px;
+    } //serchオワリ
+    #about {
+      .about_cate {
+        padding: 10px 8px;
+        margin: 2px 0;
+        background: $sidebarcolor;
+      }
+      .about_us {
+        background: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        .about_img {
+          width: 42%;
+          height: 50%;
+          margin: 10px;
+        }
+        .about_btn {
+          width: 50%;
+          text-align: left;
+          p {
+            font-size: small;
+            margin: 10px 10px 0 0;
+          }
+          .more_btn {
+            margin-top: 15px;
+          }
+        }
+      }
+
+    } //aboutオワリ
+    #shop {
+      .shop_cate {
+        padding: 10px 8px;
+        margin: 2px 0;
+        background: $sidebarcolor;
+      }
+      .information {
+        background: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        .shopinfo_img {
+          width: 42%;
+          height: 50%;
+          margin: 10px;
+        }
+        .shopinfo_btn {
+          width: 50%;
+          text-align: left;
+          p {
+            font-size: small;
+            margin: 10px 10px 0 0;
+          }
+          .more_btn {
+            margin-top: 15px;
+          }
+        }
+      }
+
+    } //shopオワリ
   }
-  #serchwords {
-    margin: 15px 0;
-  } //serchオワリ
-  #about {
-    .about_cate {
-      padding: 10px 8px;
-      margin: 2px 0;
-      background: $sidebarcolor;
-    }
-    .about_us {
-      background: #fff;
-      display: flex;
-      flex-wrap: wrap;
-      .about_img {
-        width: 50%;
-        height: 50%;
-      }
-      .about_btn {
-        width: 50%;
-        p {
-          margin: 5px 0;
-        }
-        .more_btn {
-          margin-top: 10px;
-        }
-      }
-    }
-
-  } //aboutオワリ
-  #shop {
-    .shop_cate {
-      padding: 10px 8px;
-      margin: 2px 0;
-      background: $sidebarcolor;
-    }
-    .information {
-      background: #fff;
-      display: flex;
-      flex-wrap: wrap;
-      .shopinfo_img {
-        width: 50%;
-        height: 50%;
-      }
-      .shopinfo_btn {
-        width: 50%;
-        p {
-          margin: 5px 0;
-        }
-        .more_btn {
-          margin-top: 10px;
-        }
-      }
-    }
-
-  } //shopオワリ
 }
 
 //pc_Newitems
@@ -376,12 +407,15 @@ header {
     #new_item_cover .sp_newitem_cover {
       display: none;
     }
+    #new_item_cover .pc_newitem_cover {
+      margin-bottom: 30px;
+    }
     #six_newitems .itembox {
       align-self: center;
-      margin: 3px;
+      margin-bottom: 1px;
       padding: 10px;
       background: #fff;
-      width: 29%;
+      width: 30.46%;
       height: 100%;
     }
   }
@@ -389,13 +423,21 @@ header {
     #new_item_cover .pc_newitem_cover {
       display: none;
     }
+    #new_item_cover .sp_newitem_cover {
+      margin-bottom: 10px;
+    }
     #six_newitems .itembox {
       align-self: center;
-      margin: 3px;
+      margin: 1px;
       padding: 10px;
       background: #fff;
-      width: 40%;
+      width: 42.1%;
       height: 100%;
+      p {
+        text-align: left;
+        font-size: small;
+        margin: 0 0 3px 0;
+      }
     }
   }
 
@@ -412,12 +454,15 @@ header {
     #popular_item_cover .sp_popular_cover {
       display: none;
     }
+    #popular_item_cover .pc_popular_cover {
+      margin: 30px;
+    }
     #six_popularitems .itembox {
       align-self: center;
-      margin: 3px;
+      margin: 1px;
       padding: 10px;
       background: #fff;
-      width: 29%;
+      width: 30.2%;
       height: 100%;
     }
   }
@@ -425,13 +470,21 @@ header {
     #popular_item_cover .pc_popular_cover {
       display: none;
     }
+    #popular_item_cover .sp_popular_cover {
+      margin: 10px;
+    }
     #six_popularitems .itembox {
       align-self: center;
-      margin: 3px;
+      margin: 1px;
       padding: 10px;
       background: #fff;
-      width: 40%;
+      width: 42.1%;
       height: 100%;
+      p {
+        text-align: left;
+        font-size: small;
+        margin: 0 0 3px 0;
+      }
     }
   }
 
@@ -452,17 +505,24 @@ header {
     #shop_guide_cover .sp_shopguide_cover {
       display: none;
     }
+    #shop_guide_cover .pc_shopguide_cover {
+      margin: 30px;
+    }
     #two_shopguide .shop_guide {
       background: #fff;
       align-self: stretch;
-      margin: 3px;
+      margin: 0;
       padding: 10px;
-      width: 46%;
+      width: 47%;
 
       color: $sidebarcolor;
       text-align: left;
+      .caution {
+        font-size: large;
+        margin: 10px 0 10px 0;
+      }
       p {
-        margin: 0;
+        margin: 15px 0;
       }
       span {
         color: #000;
@@ -473,6 +533,9 @@ header {
   @media (max-width: 550px) {
     #shop_guide_cover .pc_shopguide_cover {
       display: none;
+    }
+    #shop_guide_cover .sp_shopguide_cover {
+      margin: 10px;
     }
     #two_shopguide .shop_guide {
       background: #fff;
@@ -500,24 +563,38 @@ header {
 //Footer
 #footer {
   background-color: $thinwhite;
-  .pagetop_info {
-    padding: 10px 8px;
-    margin: 2px 0;
-    text-align: right;
-    max-width: 100%;
-    height: auto;
-    border-bottom: 1px solid $sidebarcolor;
+  @media (min-width: 551px) {
+    .pagetop_info {
+      padding: 10px 8px;
+      margin-top: 60px;
+      text-align: right;
+      max-width: 100%;
+      height: auto;
+      border-bottom: 1px solid $sidebarcolor;
 
+    }
   }
+  @media (max-width: 550px) {
+    .pagetop_info {
+      padding: 25px 8px;
+      text-align: center;
+      max-width: 100%;
+      height: auto;
+      border-bottom: 1px solid $sidebarcolor;
+
+    }
+  }
+
   .copyright {
     padding: 10px 0;
     text-align: center;
     color: #000;
     p {
       font-size: small;
+      letter-spacing: -0.06em
     }
     small {
-      color: #868076;
+      color: #c0bcb5;
     }
   }
 } //なんか反映されないと思ったら自動変換無効になってること多し
@@ -539,6 +616,7 @@ header {
       list-style: none;
       text-align: left;
       margin: 0 0 10px 0;
+      padding: 5px 0;
       li:before {
         content: " / ";
       }
@@ -598,26 +676,32 @@ header {
     @media (min-width: 551px) {
       #nine_products .itembox {
         align-self: center;
-        margin: 3px;
+        margin-bottom: 1px;
         padding: 10px;
         background: #fff;
-        width: 29%;
+        width: 30.4%;
         height: 100%;
       }
     }
     @media (max-width: 550px) {
       #nine_products .itembox {
         align-self: center;
-        margin: 3px;
+        margin-bottom: 1px;
         padding: 10px;
         background: #fff;
-        width: 40%;
+        width: 42.6%;
         height: 100%;
+        p {
+          text-align: left;
+          font-size: small;
+          margin: 0 0 3px 0;
+        }
       }
     }
     #button {
       display: flex;
       justify-content: space-between;
+      margin-top:20px;
 
       .back_button,
       .next_button {
@@ -641,13 +725,17 @@ header {
       #recent_pro .sp_recent_pro_pc {
         display: none;
       }
-      #three_recent_items .itembox {
-        align-self: center;
-        margin: 3px;
-        padding: 10px;
-        background: #fff;
-        width: 29%;
-        height: 100%;
+      #three_recent_items {
+        .itembox {
+          align-self: center;
+          padding: 10px;
+          background: #fff;
+          width: 30.4%;
+          height: 100%;
+          p {
+            text-align: left;
+          }
+        }
       }
     }
     @media (max-width: 550px) {
@@ -656,11 +744,16 @@ header {
       }
       #three_recent_items .itembox {
         align-self: center;
-        margin: 3px;
+        margin-bottom: 1px;
         padding: 10px;
         background: #fff;
-        width: 40%;
+        width: 42.68%;
         height: 100%;
+        p {
+          text-align: left;
+          font-size: small;
+          margin: 0 0 3px 0;
+        }
       }
     }
 
@@ -704,6 +797,7 @@ header {
       background: #fff;
       img {
         max-width: 100%;
+        width: 100%;
       }
       #display_img {
         margin: 20px 5px 20px 0;
@@ -717,7 +811,8 @@ header {
         width: 30%;
         margin: 20px 5px 20px 0;
         li {
-          width: 34%;
+          width: 47%;
+          margin: 0 1px 1px 0;
           list-style: none;
         }
       }
@@ -726,13 +821,11 @@ header {
   @media (max-width: 550px) {
     #pro_images {
       width: 100%;
-      background: #fff;
       img {
         max-width: 100%;
       }
       #display_img {
-        margin: 20px 5px 20px 0;
-        width: 78%;
+        width: 100%;
 
       }
       #list_img {
@@ -741,10 +834,9 @@ header {
         justify-content: space-around;
 
         li {
-          width: 17%;
+          width: 19%;
           list-style: none;
-          padding: 2px;
-          margin: 2px;
+          margin: 0;
         }
       }
     }
@@ -759,12 +851,16 @@ header {
       color: $sidebarcolor;
       table {
         background: #fff;
+        table-layout: fixed;
         width: 100%;
+
         th,
         tr,
         td {
           border: solid 1px $sidebarcolor;
           text-align: center;
+          margin: 10px;
+          padding: 0;
         }
         th {
           background: $photoback;
@@ -906,18 +1002,23 @@ header {
       table {
         color: $sidebarcolor;
         width: 100%;
-        margin-bottom:20px;
+        margin-bottom: 20px;
         background: #fff;
+        table-layout: fixed;
+        width: 100%;
 
         td {
           background: $photoback;
           border: solid 1px $sidebarcolor;
           text-align: center;
+          width:30%;
+          
         }
         th {
           font-weight: normal;
           border: solid 1px $sidebarcolor;
-          text-align: center;
+          text-align: left;
+          width:70%;
         }
 
       }
