@@ -1,0 +1,929 @@
+@charset "utf-8";
+html {
+  font-size: 62.5%;
+}
+
+//自動でremに変換してくれるやつ（後でなんだこれって思わないメモ
+@mixin fontsize($size: 24, $base: 10) {
+  font-size: $size + px;
+  font-size: ($size / $base) * 1rem;
+}
+
+//システムフォントだから削除しないやつ(多分)
+$ja_font: "ヒラギノ角ゴ Pro W3",
+"Hiragino Kaku Gothic Pro",
+メイリオ,
+Verdana,
+"ＭＳ Ｐゴシック",
+sans-serif;
+
+//カラー設定 赤いやつは動くやつの下のバーで登場（忘れそう
+$thinwhite: #f9f8f6;
+$sidebarcolor: #887f69;
+$photoback: #e2ddd4;
+$grey :#b0b0b0;
+$red :#9d1a2d;
+
+//本編ココカラ
+//最初はheader（pc先sp後）
+header {
+
+  background: $thinwhite;
+
+  #header_in {
+    padding-top: 10px;
+    padding-bottom: 4px;
+  } //padding設定は仮
+  //pc_logo&navi
+  @media (min-width: 551px) {
+    #header_in {
+      padding: 15px 0 10px 0;
+    }
+    #pc_logo {
+      text-align: left;
+    }
+    #pc_navi {
+      float: right;
+      hight: auto;
+
+      .pc_navi_li {
+        display: inline-flex;
+        justify-content: flex-end;
+        list-style: none;
+        float: left;
+        margin: 30px 0 0 0;
+        img {
+          margin: 0 0 0 10px;
+        } // a {
+        //   color: #626262;
+        //   text-decoration: none;
+        //   font-weight: bold;
+        //   @include fontsize(14);
+        //   float: left;
+        //   padding-right: 10px;
+        // }
+        // a:hover {
+        //   color: #887f69;
+        // }
+      }
+
+    }
+  } //スマホではパソコンメニュー表示しない
+  @media (max-width: 550px) {
+    #pc_logo {
+      display: none;
+    }
+    #pc_navi {
+      display: none;
+    }
+  } //sp_logo&navi
+  @media (max-width: 550px) {
+    #sp_logo {
+      text-align: center;
+    }
+    #sp_navimenu {
+      text-align: center;
+      .menu_icon_li {
+        width: 180px;
+        position: absolute;
+        top: 105px;
+        right: 2%;
+        z-index: 100;
+        border: 1px solid #e2ddd4;
+        background: $thinwhite;
+        margin: 0;
+        padding: 0;
+        display: none; //spメニュー消すやつ（直したいときはこの行消すとよし
+        li {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          a {
+            display: block;
+            padding: 10px 8px;
+            border-bottom: 1px solid #e2ddd4;
+            color: #868076;
+            font-size: 14px;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  } //パソコンではスマホロゴとメニュー非表示
+  @media (min-width: 551px) {
+    #sp_logo {
+      display: none;
+    }
+    #sp_navimenu {
+      display: none;
+    }
+  }
+
+}
+
+// headerココマデ
+//cover_area(sp pc 共通)
+#cover_area {
+  background: $thinwhite;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto; //スマホの画像小さくなあれのやつ
+  }
+
+}
+
+//SideMenu(for PC)
+#side_bar {
+  //ここで設定しない方が後から幸せになる
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  .serch_menu {
+    background: #fff;
+    .itemserch {
+      float: left;
+      margin: 10px 0 0 10px;
+    }
+
+    #serchwords {
+      background: $thinwhite;
+      width: 30px;
+      border: none;
+      background-image: url("../images/top/search_icon.png");
+      background-position: 95% center;
+      background-repeat: no-repeat;
+      z-index: 100;
+      padding: 0;
+      width: 90%;
+      border-radius: 0;
+    } //後からアイコンクリックで飛ぶようにしたいときに活用
+    #serch_icon {
+      //width: 30px;
+      // border: none;
+      // background-image: url("../images/top/search_icon.png");
+      // background-position: right;
+      // background-size: ;
+      // background-repeat: no-repeat;
+      // z-index: 100;
+      display: none;
+    }
+  } //ページリンクの大枠
+  #pagelink {
+    .pagelink_mae {
+      padding: 10px 8px;
+      margin: 2px 0;
+      background: $sidebarcolor;
+      background-image: url("../images/top/next_icon.png");
+      background-position: 95% center;
+      background-repeat: no-repeat;
+    }
+    .pagelink_tenkai {
+      display: none;
+      .pagelink_li {
+        margin: 0;
+        background: #FFF;
+      }
+      ul {
+        list-style: none;
+        text-align: left;
+        li {
+          margin: 0;
+        }
+        a {
+          display: block;
+          padding: 10px 8px;
+          border: 1px solid #e2ddd4;
+          color: #868076;
+          font-size: 14px;
+          text-decoration: none;
+        }
+      }
+    }
+
+  } //category
+  #category {
+    .category_mae {
+      padding: 10px 8px;
+      margin: 2px 0;
+      background: $sidebarcolor;
+      background-image: url("../images/top/down_icon.png");
+      background-position: 95% center;
+      background-repeat: no-repeat;
+    }
+    .category_tenkai {
+      //display: none;展開するときに使う
+      .category_li {
+        margin: 0;
+      }
+      ul {
+        list-style: none;
+        text-align: left;
+
+        li {
+          margin: 0;
+        }
+        a {
+          display: block;
+          padding: 10px 8px;
+          border: 1px solid #e2ddd4;
+          color: #868076;
+          font-size: 14px;
+          text-decoration: none;
+          background: #FFF;
+          background-image: url("../images/top/next_icon_gray.png");
+          background-position: 95% center;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+
+  } //about
+  @media (min-width: 551px) {
+    #about {
+      .about_cate {
+        padding: 10px 8px;
+        margin: 2px 0;
+        background: $sidebarcolor;
+      }
+      .about_us {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      .about_img {
+        margin: 10px;
+        max-width: 100%;
+      }
+      .about_btn {
+        p {
+          margin: 5px;
+        }
+      }
+    }
+    #shop {
+      .shop_cate {
+        padding: 10px 8px;
+        margin: 2px 0;
+        background: $sidebarcolor;
+      }
+      .information {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        .shopinfo_img {
+          margin: 10px;
+        }
+        .shopinfo_btn {
+          p {
+            margin: 5px;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+//SideMenu(for sp)
+@media (max-width: 550px) {
+  .itemserch {
+    display: none;
+  }
+  #serchwords {
+    margin: 15px 0;
+  } //serchオワリ
+  #about {
+    .about_cate {
+      padding: 10px 8px;
+      margin: 2px 0;
+      background: $sidebarcolor;
+    }
+    .about_us {
+      background: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      .about_img {
+        width: 50%;
+        height: 50%;
+      }
+      .about_btn {
+        width: 50%;
+        p {
+          margin: 5px 0;
+        }
+        .more_btn {
+          margin-top: 10px;
+        }
+      }
+    }
+
+  } //aboutオワリ
+  #shop {
+    .shop_cate {
+      padding: 10px 8px;
+      margin: 2px 0;
+      background: $sidebarcolor;
+    }
+    .information {
+      background: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      .shopinfo_img {
+        width: 50%;
+        height: 50%;
+      }
+      .shopinfo_btn {
+        width: 50%;
+        p {
+          margin: 5px 0;
+        }
+        .more_btn {
+          margin-top: 10px;
+        }
+      }
+    }
+
+  } //shopオワリ
+}
+
+//pc_Newitems
+#new_items {
+  #new_item_cover {
+    background: $thinwhite;
+
+    img {
+      text-align: center;
+      max-width: 100%;
+      height: auto; //スマホの画像小さくなあれのやつ
+    }
+  }
+  #six_newitems {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  @media (min-width: 551px) {
+    #new_item_cover .sp_newitem_cover {
+      display: none;
+    }
+    #six_newitems .itembox {
+      align-self: center;
+      margin: 3px;
+      padding: 10px;
+      background: #fff;
+      width: 29%;
+      height: 100%;
+    }
+  }
+  @media (max-width: 550px) {
+    #new_item_cover .pc_newitem_cover {
+      display: none;
+    }
+    #six_newitems .itembox {
+      align-self: center;
+      margin: 3px;
+      padding: 10px;
+      background: #fff;
+      width: 40%;
+      height: 100%;
+    }
+  }
+
+} //真ん中によってくれなかったのはhtmlでcontainerとrawをすっ飛ばしてたから
+//PopularItems
+#popular_items {
+  #six_popularitems {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @media (min-width: 551px) {
+    #popular_item_cover .sp_popular_cover {
+      display: none;
+    }
+    #six_popularitems .itembox {
+      align-self: center;
+      margin: 3px;
+      padding: 10px;
+      background: #fff;
+      width: 29%;
+      height: 100%;
+    }
+  }
+  @media (max-width: 550px) {
+    #popular_item_cover .pc_popular_cover {
+      display: none;
+    }
+    #six_popularitems .itembox {
+      align-self: center;
+      margin: 3px;
+      padding: 10px;
+      background: #fff;
+      width: 40%;
+      height: 100%;
+    }
+  }
+
+}
+
+//Shopping Guide
+#shop_guide {
+  #two_shopguide {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    h6 {
+      font-size: large;
+    }
+  }
+  @media (min-width: 551px) {
+    #shop_guide_cover .sp_shopguide_cover {
+      display: none;
+    }
+    #two_shopguide .shop_guide {
+      background: #fff;
+      align-self: stretch;
+      margin: 3px;
+      padding: 10px;
+      width: 46%;
+
+      color: $sidebarcolor;
+      text-align: left;
+      p {
+        margin: 0;
+      }
+      span {
+        color: #000;
+        font-size: small;
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    #shop_guide_cover .pc_shopguide_cover {
+      display: none;
+    }
+    #two_shopguide .shop_guide {
+      background: #fff;
+      align-self: stretch;
+      margin: 3px;
+      padding: 10px;
+      width: 100%;
+
+      color: $sidebarcolor;
+      text-align: left;
+      p {
+        margin: 0;
+      }
+      span {
+        color: #000;
+      }
+    }
+  }
+
+
+}
+
+
+
+//Footer
+#footer {
+  background-color: $thinwhite;
+  .pagetop_info {
+    padding: 10px 8px;
+    margin: 2px 0;
+    text-align: right;
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid $sidebarcolor;
+
+  }
+  .copyright {
+    padding: 10px 0;
+    text-align: center;
+    color: #000;
+    p {
+      font-size: small;
+    }
+    small {
+      color: #868076;
+    }
+  }
+} //なんか反映されないと思ったら自動変換無効になってること多し
+//中座が長くなるときは注意
+//list.ntml
+#list_cover_area {
+  background: $thinwhite;
+  text-align: center;
+  img {
+    max-width: 100%;
+    height: auto; //スマホの画像小さくなあれのやつ
+  }
+
+
+  #hglist {
+    background: $photoback;
+    ul {
+      display: flex;
+      list-style: none;
+      text-align: left;
+      margin: 0 0 10px 0;
+      li:before {
+        content: " / ";
+      }
+      li:first-child:before {
+        content: none;
+      }
+
+      li,
+      a {
+        margin: 5px 0 0 10px;
+        font-size: x-small;
+        color: $sidebarcolor;
+        text-decoration: none;
+      }
+    }
+  }
+
+
+  #category_images {
+    .pc_cateimages img {
+      max-width: 100%;
+      height: auto; //スマホの画像小さくなあれのやつ
+    }
+    .sp_cateimages img {
+      max-width: 100%;
+      height: auto; //スマホの画像小さくなあれのやつ
+    }
+    @media (min-width: 551px) {
+      .sp_cateimages {
+        display: none;
+      }
+
+    }
+    @media (max-width: 550px) {
+      .pc_cateimages {
+        display: none;
+      }
+    }
+  } //products_list3*3
+  #products_list {
+
+    background: $thinwhite;
+
+    img {
+      text-align: center;
+      max-width: 100%;
+      height: auto; //スマホの画像小さくなあれのやつ
+    }
+
+    #nine_products {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+
+    }
+    @media (min-width: 551px) {
+      #nine_products .itembox {
+        align-self: center;
+        margin: 3px;
+        padding: 10px;
+        background: #fff;
+        width: 29%;
+        height: 100%;
+      }
+    }
+    @media (max-width: 550px) {
+      #nine_products .itembox {
+        align-self: center;
+        margin: 3px;
+        padding: 10px;
+        background: #fff;
+        width: 40%;
+        height: 100%;
+      }
+    }
+    #button {
+      display: flex;
+      justify-content: space-between;
+
+      .back_button,
+      .next_button {
+        background: $sidebarcolor;
+        color: #fff;
+        font-size: large;
+      }
+    }
+
+
+
+  } //recent_items
+  #recent_items {
+    #three_recent_items {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (min-width: 551px) {
+      #recent_pro .sp_recent_pro_pc {
+        display: none;
+      }
+      #three_recent_items .itembox {
+        align-self: center;
+        margin: 3px;
+        padding: 10px;
+        background: #fff;
+        width: 29%;
+        height: 100%;
+      }
+    }
+    @media (max-width: 550px) {
+      #recent_pro .pc_recent_pro_pc {
+        display: none;
+      }
+      #three_recent_items .itembox {
+        align-self: center;
+        margin: 3px;
+        padding: 10px;
+        background: #fff;
+        width: 40%;
+        height: 100%;
+      }
+    }
+
+  }
+
+}
+
+//products/.html
+#product_des {
+  background: #fff;
+  text-align: center;
+  img {
+    max-width: 100%;
+    height: auto; //スマホの画像小さくなあれのやつ
+  }
+  #pro_title {
+    display: flex;
+    border-bottom: solid 1px $photoback;
+
+
+    h6 {
+      margin: 20px 0 20px 20px;
+      text-align: left;
+      font-weight: bold;
+      color: #000;
+    }
+    .pro_name {
+      margin-left: auto;
+      p {
+        color: $photoback;
+      }
+    }
+  }
+  @media (min-width: 551px) {
+    #pro_images {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      background: #fff;
+      img {
+        max-width: 100%;
+      }
+      #display_img {
+        margin: 20px 5px 20px 0;
+        width: 78%;
+
+      }
+      #list_img {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 30%;
+        margin: 20px 5px 20px 0;
+        li {
+          width: 34%;
+          list-style: none;
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    #pro_images {
+      width: 100%;
+      background: #fff;
+      img {
+        max-width: 100%;
+      }
+      #display_img {
+        margin: 20px 5px 20px 0;
+        width: 78%;
+
+      }
+      #list_img {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        li {
+          width: 17%;
+          list-style: none;
+          padding: 2px;
+          margin: 2px;
+        }
+      }
+    }
+
+  }
+  #color_size {
+    .title_color {
+      text-align: left;
+    }
+    .color_table {
+      background: #F9F9F9;
+      color: $sidebarcolor;
+      table {
+        background: #fff;
+        width: 100%;
+        th,
+        tr,
+        td {
+          border: solid 1px $sidebarcolor;
+          text-align: center;
+        }
+        th {
+          background: $photoback;
+        }
+      }
+
+    }
+  } //color.size.addtocart
+  @media (min-width: 551px) {
+    #pri_qua_cart {
+      display: flex;
+      justify-content: space-between;
+      align-self: center;
+      border-bottom: solid 1px $sidebarcolor;
+      #pro_qua {
+
+        #pro_price {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-top: solid 1px $sidebarcolor;
+          border-bottom: solid 1px $sidebarcolor;
+          .title_price {
+            padding: 10px 8px;
+            margin: 2px 0;
+          }
+          .kakaku {
+            width: 90%;
+            p {
+              margin-bottom: 0;
+              span {
+                color: red;
+                font-style: italic;
+                font-size: x-large;
+              }
+            }
+          }
+        }
+        #quantity {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .title_quantity {
+            padding: 10px 8px;
+            margin: 2px 0;
+          }
+          .num {
+            margin: 20px;
+            input[type="number"] {
+              border-radius: 0;
+            }
+
+            input {
+              padding: 0;
+              margin: 0;
+            }
+
+          }
+        }
+
+      }
+
+      #cart_icon {}
+    }
+  }
+  @media(max-width:550px) {
+    #pri_qua_cart {
+
+      #pro_qua {
+
+        #pro_price {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-top: solid 1px $sidebarcolor;
+          border-bottom: solid 1px $sidebarcolor;
+          .title_price {
+            padding: 10px 8px;
+            margin: 2px 0;
+          }
+          .kakaku {
+            width: 90%;
+            p {
+              margin-bottom: 0;
+              span {
+                color: red;
+                font-style: italic;
+                font-size: x-large;
+              }
+            }
+          }
+        }
+        #quantity {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: solid 1px $sidebarcolor;
+          .title_quantity {
+            padding: 10px 8px;
+            margin: 2px 0;
+          }
+          .num {
+            margin: 20px;
+            input[type="number"] {
+              border-radius: 0;
+            }
+
+            input {
+              padding: 0;
+              margin: 0;
+            }
+
+          }
+        }
+
+      }
+
+      #cart_icon {
+        margin-top: 10px;
+      }
+    }
+  } //descriotion_product
+  #description_pro {
+    .des_title {
+      border-bottom: solid 1px $sidebarcolor;
+    }
+    .expla {
+      text-align: left;
+      margin: 25px 0;
+      color: $sidebarcolor;
+      font-large: bold;
+      font-size: large;
+    }
+    p {
+      text-align: left;
+    }
+    .descri_table {
+      table {
+        color: $sidebarcolor;
+        width: 100%;
+        margin-bottom:20px;
+        background: #fff;
+
+        td {
+          background: $photoback;
+          border: solid 1px $sidebarcolor;
+          text-align: center;
+        }
+        th {
+          font-weight: normal;
+          border: solid 1px $sidebarcolor;
+          text-align: center;
+        }
+
+      }
+    }
+
+  }
+
+
+}
