@@ -237,6 +237,7 @@ header {
       ul {
         list-style: none;
         text-align: left;
+        
 
         li {
           margin: 0;
@@ -245,6 +246,7 @@ header {
           display: block;
           padding: 10px 8px;
           border: 1px solid #e2ddd4;
+          border-bottom:none;
           color: #868076;
           font-size: 14px;
           text-decoration: none;
@@ -794,6 +796,7 @@ header {
       justify-content: space-between;
       align-items: flex-start;
       width: 100%;
+      padding:0 0 0 8px;
       background: #fff;
       img {
         max-width: 100%;
@@ -823,6 +826,9 @@ header {
       width: 100%;
       img {
         max-width: 100%;
+        padding:2px;
+        background: #fff;
+        
       }
       #display_img {
         width: 100%;
